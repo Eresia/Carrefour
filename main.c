@@ -16,11 +16,10 @@ int main(int argc, char** argv){
 	pthread_create(&threadC, NULL, start_feu, carrefour);
 	pthread_create(&threadG, NULL, threadGestion, carrefour);
 
-	sleep(5);
+	pthread_join(threadG, NULL);
 
 	stop_carrefour(carrefour);
 
-	pthread_join(threadG, NULL);
 	pthread_join(threadC, NULL);
 
 	free_carrefour(carrefour);

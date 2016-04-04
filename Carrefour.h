@@ -8,13 +8,14 @@
 #include "ipcTools.h"
 #include "util.h"
 
-#define T 2000
+#define T 10000
 
 typedef struct Carrefour Carrefour;
 struct Carrefour{
 	int muxVoie;
 	int muxCarrefour;
 	int* feu;
+	key_t keyFeu;
 	bool* stop;
 };
 

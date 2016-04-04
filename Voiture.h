@@ -8,7 +8,7 @@
 #include "Carrefour.h"
 
 #define WAIT 20
-#define TIME_IN_CARR 100
+#define TIME_IN_CARR 1000
 
 typedef struct Voiture Voiture;
 struct Voiture{

@@ -12,7 +12,7 @@ void* threadGestion(void *arg){
 	while(nbVoiture <= nbvoitureMax){
 		read(0, buf, 1);
 		if(*buf == 'a'){
-			printf("\tVOITURE : La voiture %d est en attente voie 1\n", nbVoiture);
+			//printf("\tVOITURE : La voiture %d est en attente voie 1\n", nbVoiture);
 			newVoiture = start_voiture(nbVoiture, 1, carr);
 			if(newVoiture == NULL) return 0;
 			else{
@@ -21,7 +21,7 @@ void* threadGestion(void *arg){
 			nbVoiture++;
 		}
 		else if(*buf == 'z'){
-			printf("\tVOITURE : La voiture %d est en attente voie 2\n", nbVoiture);
+			//printf("\tVOITURE : La voiture %d est en attente voie 2\n", nbVoiture);
 			newVoiture = start_voiture(nbVoiture, 2, carr);
 			if(newVoiture == NULL) return 0;
 			else{

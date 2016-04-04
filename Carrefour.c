@@ -4,7 +4,8 @@ Carrefour* init_carrefour(){
 	Carrefour* c = (Carrefour*) malloc(sizeof(Carrefour));
 	key_t keyMuxCarrefour = ftok("/etc/passwd", 1);
 	key_t keyMuxVoie = ftok("/etc/passwd", 2);
-	c->feu = malloc(sizeof(int));
+	c->keyFeu = ftok("/etc/passwd", 3);
+	c->feu = shmalloc(c->keyFeu, sizeof(int));
 	*c->feu = -1;
 	c->stop = malloc(sizeof(bool));
 	*c->stop = false;
@@ -18,8 +19,8 @@ void stop_carrefour(Carrefour* carrefour){
 }
 
 void free_carrefour(Carrefour* carrefour){
-	free(carrefour->feu);
 	free(carrefour->stop);
+	shmfree(carrefour->keyFeu, carrefour->feu);
 	mutfree(carrefour->muxCarrefour);
 	mutfree(carrefour->muxVoie);
 	free(carrefour);
@@ -33,6 +34,7 @@ void* start_feu(void* infos){
 	char* message = malloc(100*sizeof(char));
 
 	*feu = 0;
+	
 	while(!*stop){
 		usleep(T*1000);
 		sprintf(message, "Le feu %d passe au rouge", *feu);

@@ -22,4 +22,6 @@ struct Voiture{
 Voiture* start_voiture(int id, int voie, Carrefour* carrefour);
 void enterCarrefour(Voiture* voiture);
 
+void print_voiture_message(char* message);
+
 #endif

@@ -30,13 +30,21 @@ void* start_feu(void* infos){
 	Carrefour* carrefour = (Carrefour*) infos;
 	int* feu = carrefour->feu;
 	bool* stop = carrefour->stop;
+	char* message = malloc(100*sizeof(char));
 
 	*feu = 0;
 	while(!*stop){
 		usleep(T*1000);
+		sprintf(message, "Le feu %d passe au rouge", *feu);
+		print_carrefour_message(message);
+		sprintf(message, "Le feu %d passe au vert", !*feu);
+		print_carrefour_message(message);
 		*feu = !*feu;
-		printf("%d\n", *feu);
 	}
 
 	pthread_exit(NULL);
+}
+
+void print_carrefour_message(char* message){
+	printf("CARREFOUR : %s\n", message);
 }

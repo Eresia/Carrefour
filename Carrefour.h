@@ -24,4 +24,6 @@ void free_carrefour(Carrefour* carrefour);
 
 void* start_feu(void* infos);
 
+void print_carrefour_message(char* message);
+
 #endif

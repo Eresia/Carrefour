@@ -5,14 +5,14 @@
 #include <sys/sem.h>
 #include <sys/shm.h>
 
-int semalloc(key_t key, int vallInit);
+void *shmalloc(key_t key, int size);
+int shmfree(key_t key, void *shmaddr);
+
 int mutalloc(key_t key);
+int semalloc(key_t key, int vallInit);
 
 void P(int semid);
 void V(int semid);
 
-void *shmalloc(key_t key, int size);
-
-int shmfree(key_t key, void *shmaddr);
-
+int mutfree(int mId);
 int semfree(int semid);

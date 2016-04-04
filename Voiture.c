@@ -37,4 +37,5 @@ void enterCarrefour(Voiture* voiture){
 	usleep(TIME_IN_CARR*1000);
 	printf("VOITURE : La voiture %d est passée\n", voiture->id);
 	V(muxCarrefour);
+	free(voiture);
 }

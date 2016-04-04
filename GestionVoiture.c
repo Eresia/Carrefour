@@ -13,7 +13,7 @@ void* threadGestion(void *arg){
 		read(0, buf, 1);
 		if(*buf == 'a'){
 			//printf("\tVOITURE : La voiture %d est en attente voie 1\n", nbVoiture);
-			newVoiture = start_voiture(nbVoiture, 1, carr);
+			newVoiture = start_voiture(nbVoiture, 0, carr);
 			if(newVoiture == NULL) return 0;
 			else{
 				enterCarrefour(newVoiture);
@@ -22,7 +22,7 @@ void* threadGestion(void *arg){
 		}
 		else if(*buf == 'z'){
 			//printf("\tVOITURE : La voiture %d est en attente voie 2\n", nbVoiture);
-			newVoiture = start_voiture(nbVoiture, 2, carr);
+			newVoiture = start_voiture(nbVoiture, 1, carr);
 			if(newVoiture == NULL) return 0;
 			else{
 				enterCarrefour(newVoiture);

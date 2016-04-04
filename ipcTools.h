@@ -3,6 +3,7 @@
 #include <sys/types.h>
 #include <sys/ipc.h>
 #include <sys/sem.h>
+#include <sys/shm.h>
 
 int semalloc(key_t key, int vallInit);
 int mutalloc(key_t key);

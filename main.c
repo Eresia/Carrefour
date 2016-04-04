@@ -10,21 +10,22 @@ int main(int argc, char** argv){
 
 	pthread_t threadG;
 	pthread_t threadC;
+	int* result;
 
 	Carrefour* carrefour = init_carrefour();
 
 	pthread_create(&threadC, NULL, start_feu, carrefour);
 	pthread_create(&threadG, NULL, threadGestion, carrefour);
 
-	pthread_join(threadG, NULL);
+	pthread_join(threadG, (void**) &result);
 
-	stop_carrefour(carrefour);
+	if(*result == 0){
+		stop_carrefour(carrefour);
 
-	pthread_join(threadC, NULL);
+		pthread_join(threadC, NULL);
 
-	free_carrefour(carrefour);
-
-	while(waitpid(0, 0, 0) < 0);
+		while(waitpid(0, 0, 0) < 0);
+	}
 
 	return 0;
 }

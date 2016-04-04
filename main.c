@@ -22,8 +22,6 @@ int main(int argc, char** argv){
 
 	pthread_join(threadC, NULL);
 
-	free_carrefour(carrefour);
-
 	while(waitpid(0, 0, 0) < 0);
 
 	return 0;

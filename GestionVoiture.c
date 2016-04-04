@@ -5,11 +5,12 @@ void* threadGestion(void *arg){
 	int nbvoitureMax = 10;
 	int nbVoiture = 1;
 
-	char* buf = (char*) malloc(1);
+	char* buf = (char*) malloc(sizeof(char));
 	Voiture* newVoiture;
 	Carrefour* carr = (Carrefour*) arg;
 
-	while(nbVoiture <= nbvoitureMax){
+	do{
+		*buf = '\0';
 		read(0, buf, 1);
 		if(*buf == 'a'){
 			//printf("\tVOITURE : La voiture %d est en attente voie 1\n", nbVoiture);
@@ -29,7 +30,7 @@ void* threadGestion(void *arg){
 			}
 			nbVoiture++;
 		}
-	}
+	}while(nbVoiture <= nbvoitureMax && *buf != '\0');
 
 	printf("FIN : Les %d voitures sont passées\n", nbvoitureMax);
 

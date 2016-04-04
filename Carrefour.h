@@ -12,17 +12,16 @@
 
 typedef struct Carrefour Carrefour;
 struct Carrefour{
-	int muxVoie;
-	int muxCarrefour;
-	int* feu;
+	key_t keyMuxVoie;
+	key_t keyMuxCarrefour;
 	key_t keyFeu;
+
 	bool* stop;
 };
 
 Carrefour* init_carrefour();
 void stop_carrefour(Carrefour* carrefour);
-void free_carrefour(Carrefour* carrefour);
-
+void free_carrefour(Carrefour* carrefour, int* feu);
 void* start_feu(void* infos);
 
 void print_carrefour_message(char* message);

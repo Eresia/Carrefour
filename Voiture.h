@@ -13,9 +13,9 @@
 typedef struct Voiture Voiture;
 struct Voiture{
 		int id;
-		int muxVoie;
-		int muxCarrefour;
-		int* feu;
+		key_t keyMuxVoie;
+		key_t keyMuxCarrefour;
+		key_t keyFeu;
 		int voie;
 };
 

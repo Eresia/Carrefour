@@ -4,9 +4,9 @@ Voiture* start_voiture(int id, int voie, Carrefour* carrefour){
 
 	if(fork() == 0){
 		Voiture* v = malloc(sizeof(Voiture));
-		v->feu = carrefour->feu;
-		v->muxVoie = carrefour->muxVoie;
-		v->muxCarrefour = carrefour->muxCarrefour;
+		v->keyFeu = carrefour->keyFeu;
+		v->keyMuxVoie = carrefour->keyMuxVoie;
+		v->keyMuxCarrefour = carrefour->keyMuxCarrefour;
 		v->voie = voie;
 		v->id = id;
 
@@ -19,9 +19,14 @@ Voiture* start_voiture(int id, int voie, Carrefour* carrefour){
 }
 
 void enterCarrefour(Voiture* voiture){
-	int* feu = voiture->feu;
-	int muxVoie = voiture->muxVoie;
-	int muxCarrefour = voiture->muxCarrefour;
+	key_t keyFeu = voiture->keyFeu;
+	key_t keyMuxVoie = voiture->keyMuxVoie;
+	key_t keyMuxCarrefour = voiture->keyMuxCarrefour;
+
+	int* feu = shmalloc(keyFeu, sizeof(int));
+	int muxVoie = mutalloc(keyMuxVoie);
+	int muxCarrefour = mutalloc(keyMuxCarrefour);
+
 	char* message = malloc(100*sizeof(char));
 	sprintf(message, "Arrivee de la voiture %d sur la voie %d", voiture->id, voiture->voie);
 	print_voiture_message(message);
@@ -43,6 +48,9 @@ void enterCarrefour(Voiture* voiture){
 	sprintf(message, "La voiture %d est passée", voiture->id);
 	print_voiture_message(message);
 	V(muxCarrefour);
+	shmfree(keyFeu, feu);
+	mutfree(muxVoie);
+	mutfree(muxCarrefour);
 	free(voiture);
 }
 

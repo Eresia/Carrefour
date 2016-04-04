@@ -8,7 +8,8 @@
 #include <sys/ipc.h>
 #include <sys/sem.h>
 #include <pthread.h>
-
+#include "Carrefour.h"
+#include "Voiture.h"
 void* threadGestion(void *arg);
 
 #endif

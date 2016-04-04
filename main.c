@@ -14,7 +14,7 @@ int main(int argc, char** argv){
 	Carrefour* carrefour = init_carrefour();
 
 	pthread_create(&threadC, NULL, start_feu, carrefour);
-	pthread_create(&threadG, NULL, threadGestion, NULL);
+	pthread_create(&threadG, NULL, threadGestion, carrefour);
 
 	sleep(5);
 

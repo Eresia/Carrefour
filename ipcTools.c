@@ -64,16 +64,3 @@ void V(int semid){
 int semfree(int semid){
 	return semctl(semid, 0, IPC_RMID, 0);
 }
-
-int main(){
-	key_t ipcKey = ftok("/home/utilisateur/Bureau/OS/td4", 0);
-	key_t shmkey = ipckey+1;
-	int semid = mutalloc(ipcKey);
-	printf("Creation : %d\n", semid);
-		printf("Id : %d libere\n", semid);
-		if(semfree(semid) == 0){
-	}
-	else{
-		printf("Id : %d déja libre\n", semid);
-	}
-}

@@ -19,4 +19,5 @@ struct Voiture{
 
 Voiture* start_voiture(int id, int voie, key_t feu, key_t keySemVoie, key_t keySemCar);
 void enterCarrefour(Voiture* voiture);
+
 #endif

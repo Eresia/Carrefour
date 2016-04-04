@@ -18,7 +18,7 @@ int main(int argc, char** argv){
 
 	sleep(5);
 
-	stop_carrefour();
+	stop_carrefour(carrefour);
 
 	pthread_join(threadG, NULL);
 	pthread_join(threadC, NULL);

@@ -19,8 +19,8 @@ struct Carrefour{
 };
 
 Carrefour* init_carrefour();
-void stop_carrefour();
-void free_carrefour();
+void stop_carrefour(Carrefour* carrefour);
+void free_carrefour(Carrefour* carrefour);
 
 void* start_feu(void* infos);
 

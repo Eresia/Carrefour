@@ -8,11 +8,12 @@
 #include "ipcTools.h"
 #include "util.h"
 
-#define T 10000
+#define T 5000
+#define NB_MAX_VOITURE 10
 
 typedef struct Carrefour Carrefour;
 struct Carrefour{
-	int muxVoie;
+	int* muxVoie;
 	int muxCarrefour;
 	int* feu;
 	key_t keyFeu;

@@ -1,41 +1,34 @@
 #include "GestionVoiture.h"
 
-void* threadGestion(void *arg){
+int* threadGestion(Carrefour* carrefour){
 
-	int nbvoitureMax = 10;
-	int nbVoiture = 1;
+	int nbVoitureMax = NB_MAX_VOITURE;
+	int nbVoiture = 0;
 
 	char* buf = (char*) malloc(sizeof(char));
-	int* result = (int*) malloc(sizeof(int));
 	Voiture* newVoiture;
-	Carrefour* carr = (Carrefour*) arg;
+	int* pidFils = malloc(nbVoitureMax*sizeof(int));
 
 	do{
 		*buf = '\0';
 		read(0, buf, 1);
 		if(*buf == 'a'){
-			//printf("\tVOITURE : La voiture %d est en attente voie 1\n", nbVoiture);
-			newVoiture = start_voiture(nbVoiture, 0, carr);
+			newVoiture = start_voiture(nbVoiture+1, 0, carrefour, pidFils + nbVoiture);
 			if(newVoiture != NULL){
 				enterCarrefour(newVoiture);
-				*result = 1;
-				pthread_exit(result);
+				return NULL;
 			}
 			nbVoiture++;
 		}
 		else if(*buf == 'z'){
-			//printf("\tVOITURE : La voiture %d est en attente voie 2\n", nbVoiture);
-			newVoiture = start_voiture(nbVoiture, 1, carr);
+			newVoiture = start_voiture(nbVoiture+1, 1, carrefour, pidFils + nbVoiture);
 			if(newVoiture != NULL){
 				enterCarrefour(newVoiture);
-				*result = 1;
-				pthread_exit(result);
+				return NULL;
 			}
 			nbVoiture++;
 		}
-	}while(nbVoiture <= nbvoitureMax && *buf != '\0');
+	}while(nbVoiture < nbVoitureMax && *buf != '\0');
 
-	printf("FIN : Les %d voitures sont passées\n", nbvoitureMax);
-
-	pthread_exit(NULL);
+	return pidFils;
 }

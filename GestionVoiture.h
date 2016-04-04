@@ -10,6 +10,6 @@
 #include <pthread.h>
 #include "Carrefour.h"
 #include "Voiture.h"
-void* threadGestion(void *arg);
+int* threadGestion(Carrefour* carrefour);
 
 #endif

@@ -1,15 +1,14 @@
 #include "Voiture.h"
 
-Voiture* start_voiture(int id, int voie, Carrefour* carrefour){
+Voiture* start_voiture(int id, int voie, Carrefour* carrefour, int* pid){
 
-	if(fork() == 0){
+	if((*pid = fork()) == 0){
 		Voiture* v = malloc(sizeof(Voiture));
 		v->feu = carrefour->feu;
-		v->muxVoie = carrefour->muxVoie;
+		v->muxVoie = carrefour->muxVoie[voie];
 		v->muxCarrefour = carrefour->muxCarrefour;
 		v->voie = voie;
 		v->id = id;
-
 		return v;
 	}
 	else{

@@ -1,14 +1,14 @@
 #include "Voiture.h"
 
-Voiture* start_voiture(int id, int voie, key_t keyFeu, key_t keyMuxVoie, key_t keyMuxCarrefour){
+Voiture* start_voiture(int id, int voie, Carrefour* carrefour){
 
 	if(fork() == 0){
 		Voiture* v = malloc(sizeof(Voiture));
-		v->keyFeu = keyFeu;
-		v->keyMuxVoie = keyMuxVoie;
-		v->keyMuxCarrefour = keyMuxCarrefour;
-		v->id = id;
+		v->feu = carrefour->feu;
+		v->muxVoie = carrefour->muxVoie;
+		v->muxCarrefour = carrefour->muxCarrefour;
 		v->voie = voie;
+		v->id = id;
 
 		return v;
 	}
@@ -19,11 +19,11 @@ Voiture* start_voiture(int id, int voie, key_t keyFeu, key_t keyMuxVoie, key_t k
 }
 
 void enterCarrefour(Voiture* voiture){
-	int* feu = shmalloc(voiture->keyFeu, sizeof(int));
-	int* muxVoie = (int*) shmalloc(voiture->keyMuxVoie, sizeof(int));
-	int* muxCarrefour = (int*) shmalloc(voiture->keyMuxCarrefour, sizeof(int));
+	int* feu = voiture->feu;
+	int muxVoie = voiture->muxVoie;
+	int muxCarrefour = voiture->muxCarrefour;
 	printf("VOITURE : arrivee de la voiture %d sur la voie %d\n", voiture->id, voiture->voie);
-	P(*muxVoie);
+	P(muxVoie);
 	printf("VOITURE : La voiture %d arrive au feu\n", voiture->id);
 
 	while(*feu != voiture->voie){
@@ -31,13 +31,10 @@ void enterCarrefour(Voiture* voiture){
 	}
 
 	printf("VOITURE : La voiture %d est engagée\n", voiture->id);
-	P(*muxCarrefour);
+	P(muxCarrefour);
 	printf("VOITURE : La voiture %d passe\n", voiture->id);
-	V(*muxVoie);
+	V(muxVoie);
 	usleep(TIME_IN_CARR);
 	printf("VOITURE : La voiture %d est passée\n", voiture->id);
-	V(*muxCarrefour);
-	shmfree(voiture->keyMuxVoie, muxCarrefour);
-	shmfree(voiture->keyMuxCarrefour, muxCarrefour);
-	shmfree(voiture->keyFeu, feu);
+	V(muxCarrefour);
 }

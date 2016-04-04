@@ -16,7 +16,6 @@ void* threadGestion(void *arg){
 			printf("VOITURE : La voiture %d est en attente voie 2\n", nbVoiture);
 		}
 	}
-
-	(void) arg;
+	
 	pthread_exit(NULL);
 }

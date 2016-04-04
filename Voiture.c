@@ -27,14 +27,14 @@ void enterCarrefour(Voiture* voiture){
 	printf("VOITURE : La voiture %d arrive au feu\n", voiture->id);
 
 	while(*feu != voiture->voie){
-		usleep(WAIT);
+		usleep(WAIT*1000);
 	}
 
 	printf("VOITURE : La voiture %d est engagée\n", voiture->id);
 	P(muxCarrefour);
 	printf("VOITURE : La voiture %d passe\n", voiture->id);
 	V(muxVoie);
-	usleep(TIME_IN_CARR);
+	usleep(TIME_IN_CARR*1000);
 	printf("VOITURE : La voiture %d est passée\n", voiture->id);
 	V(muxCarrefour);
 }

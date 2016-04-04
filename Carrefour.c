@@ -33,8 +33,9 @@ void* start_feu(void* infos){
 
 	*feu = 0;
 	while(!*stop){
-		usleep(T);
+		usleep(T*1000);
 		*feu = !*feu;
+		printf("%d\n", *feu);
 	}
 
 	pthread_exit(NULL);

@@ -1,6 +1,6 @@
 EXE=project
 CFLAGS= -Wall
-LDFLAGS=
+LDFLAGS= -lpthread
 
 SRC= $(wildcard *.c)
 

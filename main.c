@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include<pthread.h>
-#include<GestionVoiture.h>
+#include <pthread.h>
+#include "GestionVoiture.h"
 
 int main(int argc, char** argv){
 
@@ -9,8 +9,7 @@ int main(int argc, char** argv){
 
 	pthread_create(&threadG, NULL, threadGestion, NULL);
 
-	pthread_join(threadGestion, NULL);
-
+	pthread_join(threadG, NULL);
 
 	return 0;
 }

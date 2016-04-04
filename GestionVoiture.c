@@ -1,8 +1,7 @@
 #include "GestionVoiture.h"
 
-int* start_gestion(Carrefour* carrefour, bool automatique){
+int* start_gestion(Carrefour* carrefour, int nbVoitureMax, bool automatique){
 
-	int nbVoitureMax = NB_MAX_VOITURE;
 	int nbVoiture = 0;
 
 	int* pidFils = malloc(nbVoitureMax*sizeof(int));

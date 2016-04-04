@@ -1,6 +1,6 @@
 #include "Carrefour.h"
 
-Carrefour* init_carrefour(){
+Carrefour* init_carrefour(int secondaryTime){
 	Carrefour* c = (Carrefour*) malloc(sizeof(Carrefour));
 	key_t keyMuxCarrefour = ftok("/etc/passwd", 0);
 	key_t keyMuxVoie0 = ftok("/etc/passwd", 1);
@@ -17,7 +17,7 @@ Carrefour* init_carrefour(){
 	c->stop = malloc(sizeof(bool));
 	*c->stop = false;
 
-	c->muxCarrefour = mutalloc(keyMuxCarrefour);
+	c->muxCarrefour = mutalloc(keyMuxCarrefour + 1);
 
 	c->muxVoie = malloc(2*sizeof(int));
 	c->muxVoie[0] = mutalloc(keyMuxVoie0 + 1);
@@ -26,6 +26,10 @@ Carrefour* init_carrefour(){
 		perror("Erreur dans la création des voies");
 		return NULL;
 	}
+
+	c->secondaryTime = malloc(sizeof(int));
+	*c->secondaryTime = secondaryTime;
+
 	return c;
 }
 
@@ -55,7 +59,13 @@ void* start_feu(void* infos){
 	print_carrefour_message(message);
 
 	while(!*stop){
-		int i = T*1000;
+		int i;
+		if(*feu == 0){
+			i = T*1000;
+		}
+		else{
+			i = *carrefour->secondaryTime*1000;
+		}
 		do{
 			usleep(100);
 			i -= 100;

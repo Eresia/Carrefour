@@ -8,8 +8,9 @@
 #include "ipcTools.h"
 #include "util.h"
 
-#define T 500
-#define NB_MAX_VOITURE 10
+#define T 1000
+#define T2 500
+#define NB_MAX_VOITURE_DEFAULT 10
 
 typedef struct Carrefour Carrefour;
 struct Carrefour{
@@ -18,9 +19,10 @@ struct Carrefour{
 	int* feu;
 	key_t keyFeu;
 	bool* stop;
+	int* secondaryTime;
 };
 
-Carrefour* init_carrefour();
+Carrefour* init_carrefour(int secondaryTime);
 void stop_carrefour(Carrefour* carrefour);
 void free_carrefour(Carrefour* carrefour);
 

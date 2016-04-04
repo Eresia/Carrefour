@@ -15,6 +15,6 @@
 #define ARRIVE_MAX 1000000
 #define ARRIVE_MIN 1000
 
-int* start_gestion(Carrefour* carrefour, bool automatique);
+int* start_gestion(Carrefour* carrefour, int nbVoitureMax, bool automatique);
 
 #endif

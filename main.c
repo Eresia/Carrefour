@@ -19,7 +19,7 @@ int main(int argc, char** argv){
 
 	pthread_create(&threadC, NULL, start_feu, carrefour);
 
-	pidFils = threadGestion(carrefour);
+	pidFils = start_gestion(carrefour, true);
 
 	if(pidFils != NULL){
 		int i;

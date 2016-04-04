@@ -9,7 +9,12 @@
 #include <sys/sem.h>
 #include <pthread.h>
 #include "Carrefour.h"
+#include "util.h"
 #include "Voiture.h"
-int* threadGestion(Carrefour* carrefour);
+
+#define ARRIVE_MAX 1000000
+#define ARRIVE_MIN 1000
+
+int* start_gestion(Carrefour* carrefour, bool automatique);
 
 #endif

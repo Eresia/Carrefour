@@ -8,7 +8,7 @@
 #include "ipcTools.h"
 #include "util.h"
 
-#define T 5000
+#define T 500
 #define NB_MAX_VOITURE 10
 
 typedef struct Carrefour Carrefour;

@@ -10,6 +10,7 @@
 #define WAIT 20
 #define TIME_IN_CARR 100
 
+//Structure des voitures
 typedef struct Voiture Voiture;
 struct Voiture{
 		int id;
@@ -19,9 +20,13 @@ struct Voiture{
 		int voie;
 };
 
+//Création des voitures
 Voiture* start_voiture(int id, int voie, Carrefour* carrefour, int* pid);
+
+//Entrée dans le carrefour
 void enterCarrefour(Voiture* voiture);
 
+//Affichage des messages des voitures
 void print_voiture_message(char* message);
 
 #endif

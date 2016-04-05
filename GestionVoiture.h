@@ -15,6 +15,7 @@
 #define ARRIVE_MAX 1000000
 #define ARRIVE_MIN 1000
 
+//Fonction de gestion de la création de voitures
 int* start_gestion(Carrefour* carrefour, int nbVoitureMax, bool automatique);
 
 #endif

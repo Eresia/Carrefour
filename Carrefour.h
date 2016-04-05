@@ -12,6 +12,7 @@
 #define T2 500
 #define NB_MAX_VOITURE_DEFAULT 10
 
+//Structure du carrefour
 typedef struct Carrefour Carrefour;
 struct Carrefour{
 	int* muxVoie;
@@ -22,12 +23,19 @@ struct Carrefour{
 	int* secondaryTime;
 };
 
+//Création du carrefour
 Carrefour* init_carrefour(int secondaryTime);
+
+//Arrêt du carrefour
 void stop_carrefour(Carrefour* carrefour);
+
+//Libération du carrefour
 void free_carrefour(Carrefour* carrefour);
 
+//Lancement du carrefour (en thread)
 void* start_feu(void* infos);
 
+//Affichage des messages du carrefour
 void print_carrefour_message(char* message);
 
 #endif

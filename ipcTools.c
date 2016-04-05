@@ -23,26 +23,6 @@ void* shmalloc(key_t key, int size){
 	return res;
 }
 
-/*static int shmstat(key_t key, struct shmid_ds* buf){
-	//On regarde si l'espace mémoire a bien déjà été crée dans ce proc
-	int shmid = shmget(key, 0, 0644);
-	if(shmid == -1){
-		perror("not accessible");
-		return -1;
-	}
-	//On met les "stats" dans le "buf"
-	return shmctl(shmid, IPC_STAT, buf);
-}
-
-static int shmattaches(key_t key){
-	struct shmid_ds stats;
-	if(shmstat(key, &stats) == -1){
-		perror("stats failed");
-		return -1;
-	}
-	return stats.shm_nattch;
-}*/
-
 /*****************************************************************FREE*/
 int shmfree(key_t key, void* addr){
 	/*On regarde si l'espace mémoire a bien déjà été crée dans ce proc*/
